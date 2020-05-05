@@ -29,11 +29,23 @@ function numberReverse (number=0,places=1) {
 
 
 function stringReverse(wnumber) {
+  // this is the original reverse function proposed by free
+  // it works by converting the number into a string
+  // then it converts the string into an array 
+  // then it reverses the order of the array with .reverse()
+  // now it´s time to join the elements back togheter to form the string
   return  [...String(wnumber)].reverse().join("");
 }
 
 function shortReverse(wnumber) {
-  return [... wnumber.toString()].reduce( (one,theOther)=> theOther + "" +one )
+  // this is a faster way to reverse a number
+  // first we convert number into a string then into an array
+  // it´s done with [...wnumber.toString()] 
+  // now let´s concatenate the pieces back togheter only in reverse order
+  // that´s done with the reduce function and the arrou function
+  // theNext is concatenated BEFORE the one ...
+  // to make sure the result will be a string a + "" is concatenated
+  return [... wnumber.toString()].reduce( (one,theNext)=> theNext + "" +one )
  
   }
 
@@ -42,10 +54,9 @@ function largestPalindromeProduct(n,which) {
   const start = 10 ** (n-1) // start 10,100,1000, dependind on n
   const finish = start * 10 - 1 // ends at 99, 999, 9999 depending on n
   let largest = - Infinity // cheat to find largest
-  // mind the next for loops it starts at a number and 
-  // ends at another number, so the start of the loop is != 0
-  // also, the while of the loop has a <= (less than or equal) and not
-  // < (less than)
+  
+  // Start the search from the largest down to the smallest
+  
   for (let i= finish; i >= start + 1 ; i--) { // from largest
   
     for (let j = i-1 ; j >= start ; j-- ) {  // thru smallest
